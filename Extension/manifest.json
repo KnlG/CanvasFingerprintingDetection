@@ -1,1 +1,50 @@
-
+{
+  "name": "Canvas Fingerprinting Prevention",
+  "version": "1.0",
+  "description": "Block website trackers from collecting information for canvas fingerprinting!",
+  "permissions": ["activeTab","declarativeContent","storage", "<all_urls>", "tabs", "contentSettings"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/get_started16.png",
+      "32": "images/get_started32.png",
+      "48": "images/get_started48.png",
+      "128": "images/get_started128.png"
+    }
+  },
+  "content_scripts": [
+        {
+        "matches": [
+            "http://*/*",
+            "https://*/*"
+            ],
+        "all_frames": true,
+        "js": ["content_script.js"],
+        "run_at": "document_start"
+        },
+        {
+         "matches": [
+            "http://*/*",
+            "https://*/*"
+            ],
+        "all_frames": true,
+        "js": ["send.js"],
+        "run_at": "document_end"
+        }
+    ],
+   "icons": {
+    "16": "images/get_started16.png",
+    "32": "images/get_started32.png",
+    "48": "images/get_started48.png",
+    "128": "images/get_started128.png"
+  },
+  "manifest_version": 2,
+  "content_security_policy": "default-src 'self';",
+  "externally_connectable": {
+    "matches": ["*://localhost/*"]
+  }
+}
