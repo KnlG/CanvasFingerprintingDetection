@@ -1,0 +1,16 @@
+{
+ "cors": [
+   {
+     "origin": [
+       "*"
+     ],
+     "method": [
+       "POST", "GET", "OPTIONS"
+     ],
+     "responseHeader": [
+       "Authorization", "Content-Range", "Accept", "Content-Type", "Origin", "Range", "Referer", "sec-ch-ua", "sec-ch-ua-mobile", "User-Agent"
+     ],
+     "maxAgeSeconds": 3600
+   }
+ ]
+}
