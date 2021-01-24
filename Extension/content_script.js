@@ -74,17 +74,26 @@
 			HTMLCanvasElement.prototype.toDataURL = function(type = 'image/png', encoderOptions = 0.92){
 				let res = original_toData.apply(this, [type, encoderOptions]);
 				// console.log(res);
-				x = Math.random(10);
-				res = res.concat(x);
+				var l = res.length;
+				x = Math.random(100);
+				y= Math.random(100);
+				res[0] = x
+				res[l-1] = y
+				// for(var i = 0; i < res.length; i++){
+				// 	res.charAt(i) = String.fromCharCode(res.charCodeAt(i)+1);
+				// }
 				script = {'operation': 'call', 'symbol': 'HTMLCanvasElement.toDataURL', 'value': "image/png", 'arguments': JSON.stringify([type, encoderOptions]), 'url': document.URL};
 				window.scripts.push(script);
-				console.log('Overriden method: toDataURL');
+				console.log('Overriden method: toDataURL', res);
 				return res;
 			}
 			const original_getImage = CanvasRenderingContext2D.prototype.getImageData;
 			CanvasRenderingContext2D.prototype.getImageData = function(sx, sy, sw, sh){
 				let res = original_getImage.apply(this, [sx, sy, sw, sh]);
-				res['data'][0] = getRandomInt(10);
+				var l = res['data'].length
+				res['data'][0] = getRandomInt(100);
+				res['data'][l-1] = getRandomInt(100);
+				// console.log(res);
 				script = {'operation': 'call', 'symbol': 'CanvasRenderingContext2D.getImageData', 'value': "image/png", 'arguments': JSON.stringify([sx,sy, sw, sh]), 'url': document.URL};
 				window.scripts.push(script);
 				console.log('Overriden method: getImageData');

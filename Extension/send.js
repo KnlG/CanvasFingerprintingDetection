@@ -3,6 +3,9 @@ setTimeout(function(){
 		var actualCode = '(' + function() {
 
 			var uniq = function(arr){
+				if(!arr){
+					return arr;
+				}
 				var arr = Object.values(arr);
 				// console.log(arr);
 				var obj = {};
@@ -40,5 +43,6 @@ setTimeout(function(){
 	(document.head||document.documentElement).appendChild(script);
 	window.addEventListener("message", function(event) {
 		chrome.runtime.sendMessage({"fingerprinting": event.data}, function(response) {});
+		return true;
 	});
 }, 2000);

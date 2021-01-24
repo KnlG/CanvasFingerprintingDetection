@@ -6,5 +6,6 @@ chrome.runtime.onMessage.addListener(
     if (request.fingerprinting.result == true){
         alert("This website " + request.fingerprinting.url +" was marked suspicious of canvas fingerprinting and prevented.");   
     }
+    return true;
   }
 );
