@@ -1,2 +1,4 @@
 # Canvas Fingerprinting Detection and Prevention
-To detect fingerprinting we use Princeton Web Census Data Release(https://webtransparency.cs.princeton.edu/webcensus/data-release/details.html), parts of this notebook(https://github.com/citp/openwpm-data-release/blob/master/notebooks/Canvas-Fingerprinting.ipynb) and heuristics described in this paper(https://www.cs.princeton.edu/~arvindn/publications/OpenWPM_1_million_site_tracking_measurement.pdf#page=12).
+We analyze samples of Princeton Web Census Data Release(https://webtransparency.cs.princeton.edu/webcensus/data-release/details.html) in two notebooks.
+To detect fingerprinting we use heuristics described in this paper(https://www.cs.princeton.edu/~arvindn/publications/OpenWPM_1_million_site_tracking_measurement.pdf#page=12). The code is written using python's Flask framework and is accessible in the API folder.
+Chrome extension built based on this is available in the Extension folder. 
