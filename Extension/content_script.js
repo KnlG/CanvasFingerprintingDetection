@@ -4,6 +4,11 @@
 			function getRandomInt(max) {
  				return Math.floor(Math.random() * Math.floor(max));
 			}
+			// 
+			function setCharAt(str,index,chr) {
+   				 if(index > str.length-1) return str;
+    			return str.toString().substring(0,index) + chr + str.toString().substring(index+1);
+			}
 			const original_ft = CanvasRenderingContext2D.prototype.fillText;
 			CanvasRenderingContext2D.prototype.fillText = function (text, x, y, maxWidth=1000){
 				let fillText = original_ft.apply(this, [text, x, y, maxWidth]);
@@ -75,9 +80,9 @@
 				let res = original_toData.apply(this, [type, encoderOptions]);
 				var l = res.length;
 				var x = getRandomInt(l);
-				res[0] = getRandomInt(100);
-				res[x] = getRandomInt(100);
-				res[l-1] = getRandomInt(100)
+				res = setCharAt(res, 22, getRandomInt(100));
+				res = setCharAt(res, x, getRandomInt(100));
+				res = setCharAt(res, l-1, getRandomInt(100));
 				script = {'operation': 'call', 'symbol': 'HTMLCanvasElement.toDataURL', 'value': "image/png", 'arguments': JSON.stringify([type, encoderOptions]), 'url': document.URL};
 				window.scripts.push(script);
 				console.log('Overriden method: toDataURL');
@@ -88,9 +93,9 @@
 				let res = original_getImage.apply(this, [sx, sy, sw, sh]);
 				var l = res['data'].length
 				var x = getRandomInt(l);
-				res['data'][0] = getRandomInt(100);
-				res['data'][x] = x = getRandomInt(100);
-				res['data'][l-1] = getRandomInt(100);
+				res['data'] = setCharAt(res['data'], 0, getRandomInt(100));
+				res['data'] = setCharAt(res['data'], x, getRandomInt(100));
+				res['data'] = setCharAt(res['data'], l-1, getRandomInt(100));
 				script = {'operation': 'call', 'symbol': 'CanvasRenderingContext2D.getImageData', 'value': "image/png", 'arguments': JSON.stringify([sx,sy, sw, sh]), 'url': document.URL};
 				window.scripts.push(script);
 				console.log('Overriden method: getImageData');
